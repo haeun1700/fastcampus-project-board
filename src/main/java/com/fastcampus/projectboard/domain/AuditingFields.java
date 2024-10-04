@@ -18,24 +18,25 @@ import java.time.LocalDateTime;
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public class AuditingFields {
+// 이 클래스는 혼자 쓰는 엔티티가 아니라 갔다가 쓰는 것이다. 라고 해서 abstract를 붙여줘야함.(추상)
+public abstract class AuditingFields {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt; // 생성일시
+    protected LocalDateTime createdAt; // 생성일시
 
     @CreatedBy
-    @Column(nullable = false, updatable = false, length = 100)
-    private String createdBy; // 생성자
+    @Column(nullable = false, updatable = false)
+    protected String createdBy; // 생성자
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
     @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
+    protected LocalDateTime modifiedAt; // 수정일시
 
     @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy; // 수정자
+    @Column(nullable = false)
+    protected String modifiedBy; // 수정자
 
 }
