@@ -33,7 +33,8 @@ public class AuthControllerTest {
         // When & Then
         mvc.perform(get("/login"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
+
+        .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
     }
 
 }
